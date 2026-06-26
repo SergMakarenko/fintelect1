@@ -708,16 +708,82 @@
 <section class="cta-final">
   <h2 class="fade-up">Начните инвестировать вместе с Fintelect</h2>
   <p class="fade-up fade-up-d1">Оставьте email — пришлём детали подписки и ответим на вопросы перед покупкой.</p>
-  <div class="email-form fade-up fade-up-d2" style="flex-direction:column;align-items:center;gap:10px;">
-    <a href="mailto:serg.fintelect@gmail.com?subject=Подписка%20на%20портфель%20Fintelect%20%E2%80%94%20хочу%20узнать%20подробнее" class="btn-main" style="width:100%;max-width:340px;justify-content:center;height:48px;font-size:15px;">
-      Написать нам →
+
+  <!-- Шаг 1 -->
+  <div id="step1" class="fade-up fade-up-d2" style="max-width:420px;margin:0 auto;">
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <input type="text" id="f_name" placeholder="Ваше имя" autocomplete="given-name"
+             style="width:100%;height:46px;border:1px solid var(--border);border-radius:var(--radius-sm);padding:0 16px;font-size:14px;font-family:inherit;outline:none;background:var(--surface-2);color:var(--ink);">
+      <input type="email" id="f_email" placeholder="ваш@email.com" autocomplete="email"
+             style="width:100%;height:46px;border:1px solid var(--border);border-radius:var(--radius-sm);padding:0 16px;font-size:14px;font-family:inherit;outline:none;background:var(--surface-2);color:var(--ink);">
+      <button onclick="goStep2()" class="btn-main" style="width:100%;height:48px;font-size:15px;justify-content:center;">
+        Далее →
+      </button>
+    </div>
+    <div id="step1Err" style="display:none;color:#C0392B;font-size:13px;margin-top:8px;"></div>
+  </div>
+
+  <!-- Шаг 2 -->
+  <form id="step2" style="display:none;max-width:420px;margin:0 auto;"
+        action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="ce9b807f-f0fd-4e61-8aab-7369461bf18f">
+    <input type="hidden" name="subject" value="Новая заявка — Подписка на портфель Fintelect">
+    <input type="hidden" name="from_name" value="Fintelect Landing">
+    <input type="hidden" name="redirect" value="false">
+    <input type="hidden" id="h_name" name="name">
+    <input type="hidden" id="h_email" name="email">
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="font-size:13px;color:var(--ink-2);text-align:center;padding:4px 0;">
+        Шаг 2 из 2 — почти готово
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <select name="country_code" id="f_code"
+                style="width:88px;height:46px;border:1px solid var(--border);border-radius:var(--radius-sm);padding:0 8px;font-size:14px;font-family:inherit;outline:none;background:var(--surface-2);color:var(--ink);flex-shrink:0;">
+          <option value="+380">🇺🇦 +380</option>
+          <option value="+7">🇷🇺 +7</option>
+          <option value="+7kz">🇰🇿 +7</option>
+          <option value="+375">🇧🇾 +375</option>
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+44">🇬🇧 +44</option>
+          <option value="+49">🇩🇪 +49</option>
+          <option value="+other">Другой</option>
+        </select>
+        <input type="tel" name="phone" placeholder="Номер телефона" autocomplete="tel"
+               style="flex:1;height:46px;border:1px solid var(--border);border-radius:var(--radius-sm);padding:0 16px;font-size:14px;font-family:inherit;outline:none;background:var(--surface-2);color:var(--ink);">
+      </div>
+      <p style="font-size:12px;color:var(--ink-3);margin:0;text-align:center;">
+        Перезвоним или напишем — как вам удобнее
+      </p>
+      <button type="submit" id="submitBtn" class="btn-main" style="width:100%;height:48px;font-size:15px;justify-content:center;">
+        Отправить заявку →
+      </button>
+      <button type="button" onclick="backStep1()" style="background:none;border:none;font-size:13px;color:var(--ink-3);cursor:pointer;padding:4px;">
+        ← Назад
+      </button>
+    </div>
+    <div id="formMsg" style="display:none;margin-top:10px;font-size:14px;font-weight:500;text-align:center;"></div>
+  </form>
+
+  <!-- Успех -->
+  <div id="formSuccess" style="display:none;max-width:420px;margin:0 auto;text-align:center;">
+    <div style="font-size:32px;margin-bottom:12px;">✓</div>
+    <div style="font-size:16px;font-weight:600;color:var(--green);margin-bottom:6px);">Заявка отправлена!</div>
+    <div style="font-size:14px;color:var(--ink-2);">Ответим в течение 24 часов на ваш email или по телефону.</div>
+  </div>
+
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;" class="fade-up fade-up-d3">
+    <a href="https://t.me/fintelega_channel" target="_blank" class="btn-outline" style="height:40px;font-size:13px;gap:7px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21.198 2.433a2.242 2.242 0 00-1.022.215l-16.5 6.75a2.25 2.25 0 00.126 4.238l3.918 1.181 1.548 5.148a.75.75 0 001.28.298l2.286-2.396 4.364 3.22a2.25 2.25 0 003.504-1.545l2.25-16.5a2.25 2.25 0 00-2.754-2.609zm-1.667 2.663l-2.003 14.68-4.496-3.318-2.496 2.617 1.23-4.09 7.765-9.889z"/></svg>
+      Telegram
     </a>
-    <a href="https://t.me/fintelega_channel" target="_blank" class="btn-outline" style="width:100%;max-width:340px;justify-content:center;height:44px;font-size:14px;gap:7px;">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M21.198 2.433a2.242 2.242 0 00-1.022.215l-16.5 6.75a2.25 2.25 0 00.126 4.238l3.918 1.181 1.548 5.148a.75.75 0 001.28.298l2.286-2.396 4.364 3.22a2.25 2.25 0 003.504-1.545l2.25-16.5a2.25 2.25 0 00-2.754-2.609zm-1.667 2.663l-2.003 14.68-4.496-3.318-2.496 2.617 1.23-4.09 7.765-9.889z"/></svg>
-      Написать в Telegram
+    <a href="mailto:serg.fintelect@gmail.com?subject=Подписка%20Fintelect" class="btn-outline" style="height:40px;font-size:13px;gap:7px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+      Email
     </a>
   </div>
-  <div class="trust-note fade-up fade-up-d3">
+
+  <div class="trust-note fade-up" style="margin-top:14px;">
     <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
     Без спама · Ответим в течение 24 часов
   </div>
@@ -872,30 +938,61 @@ window.addEventListener('scroll', function() {
 }, { passive: true });
 
 
-// ── Form submit handler ──
-async function handleSubmit(e, form) {
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  btn.textContent = 'Отправляем...';
-  btn.style.opacity = '0.7';
-  try {
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
-    if (res.ok) {
-      form.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    } else {
-      btn.textContent = 'Ошибка — попробуйте ещё раз';
-      btn.style.opacity = '1';
-    }
-  } catch {
-    btn.textContent = 'Ошибка — попробуйте ещё раз';
-    btn.style.opacity = '1';
-  }
+// ── Двухшаговая форма ──
+function goStep2() {
+  var name = document.getElementById('f_name').value.trim();
+  var email = document.getElementById('f_email').value.trim();
+  var err = document.getElementById('step1Err');
+  if (!name) { err.textContent = 'Пожалуйста, введите ваше имя'; err.style.display='block'; return; }
+  if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) { err.textContent = 'Введите корректный email'; err.style.display='block'; return; }
+  err.style.display = 'none';
+  document.getElementById('h_name').value = name;
+  document.getElementById('h_email').value = email;
+  document.getElementById('step1').style.display = 'none';
+  document.getElementById('step2').style.display = 'block';
 }
+function backStep1() {
+  document.getElementById('step2').style.display = 'none';
+  document.getElementById('step1').style.display = 'block';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('step2');
+  if (!form) return;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    var msg = document.getElementById('formMsg');
+    btn.textContent = 'Отправляем...';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+    try {
+      var res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      var data = await res.json();
+      if (data.success) {
+        document.getElementById('step2').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        btn.textContent = 'Отправить заявку →';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        msg.style.display = 'block';
+        msg.style.color = '#C0392B';
+        msg.textContent = 'Ошибка — напишите на serg.fintelect@gmail.com';
+      }
+    } catch(err) {
+      btn.textContent = 'Отправить заявку →';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      msg.style.display = 'block';
+      msg.style.color = '#C0392B';
+      msg.textContent = 'Ошибка — напишите на serg.fintelect@gmail.com';
+    }
+  });
+});
 
 // Trigger hero elements immediately (already in view)
 document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
