@@ -708,17 +708,14 @@
 <section class="cta-final">
   <h2 class="fade-up">Начните инвестировать вместе с Fintelect</h2>
   <p class="fade-up fade-up-d1">Оставьте email — пришлём детали подписки и ответим на вопросы перед покупкой.</p>
-  <form class="email-form fade-up fade-up-d2"
-        action="https://formspree.io/f/YOUR_FORM_ID"
-        method="POST"
-        onsubmit="handleSubmit(event, this)">
-    <input type="email" name="email" placeholder="ваш@email.com" required />
-    <input type="hidden" name="_subject" value="Новая заявка — Подписка на портфель Fintelect" />
-    <input type="hidden" name="_replyto" value="serg.fintelect@gmail.com" />
-    <button type="submit" class="btn-main" id="submitBtn">Получить детали →</button>
-  </form>
-  <div id="formSuccess" style="display:none;color:var(--green);font-size:14px;font-weight:500;margin-top:12px;">
-    ✓ Заявка отправлена — ответим в течение 24 часов
+  <div class="email-form fade-up fade-up-d2" style="flex-direction:column;align-items:center;gap:10px;">
+    <a href="mailto:serg.fintelect@gmail.com?subject=Подписка%20на%20портфель%20Fintelect%20%E2%80%94%20хочу%20узнать%20подробнее" class="btn-main" style="width:100%;max-width:340px;justify-content:center;height:48px;font-size:15px;">
+      Написать нам →
+    </a>
+    <a href="https://t.me/fintelega_channel" target="_blank" class="btn-outline" style="width:100%;max-width:340px;justify-content:center;height:44px;font-size:14px;gap:7px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M21.198 2.433a2.242 2.242 0 00-1.022.215l-16.5 6.75a2.25 2.25 0 00.126 4.238l3.918 1.181 1.548 5.148a.75.75 0 001.28.298l2.286-2.396 4.364 3.22a2.25 2.25 0 003.504-1.545l2.25-16.5a2.25 2.25 0 00-2.754-2.609zm-1.667 2.663l-2.003 14.68-4.496-3.318-2.496 2.617 1.23-4.09 7.765-9.889z"/></svg>
+      Написать в Telegram
+    </a>
   </div>
   <div class="trust-note fade-up fade-up-d3">
     <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
