@@ -368,7 +368,7 @@
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Лицензия SEC
     </a>
   </div>
-  <a href="#price" class="nav-cta">Подключить →</a>
+  <a href="#price" class="nav-cta" onclick="event.preventDefault();scrollToForm('Подписка на портфель')">Подключить →</a>
 </nav>
 
 <!-- HERO -->
@@ -377,7 +377,7 @@
   <h1 class="fade-up fade-up-d1">Копируйте реальный портфель<br><em>Fintelect</em> на свой счёт</h1>
   <p class="hero-sub fade-up fade-up-d2">Никакого самостоятельного анализа. Вы получаете точный состав нашего ETF-портфеля и сигналы об изменениях — и повторяете сделки у своего брокера.</p>
   <div class="hero-cta fade-up fade-up-d3">
-    <a href="#price" class="btn-main">Подключить за $350 →</a>
+    <a href="#price" class="btn-main" onclick="event.preventDefault();scrollToForm('Подписка на портфель')">Подключить за $350 →</a>
     <a href="https://www.youtube.com/@fintelect" target="_blank" class="btn-outline">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       Смотреть обзор рынка
@@ -636,7 +636,7 @@
         <li><svg class="check-icon" viewBox="0 0 16 16" fill="none" stroke="#1A7A4A" stroke-width="2"><polyline points="3,8 6,11 13,4"/></svg>Голосовые стримы в Telegram</li>
         <li><svg class="check-icon" viewBox="0 0 16 16" fill="none" stroke="#1A7A4A" stroke-width="2"><polyline points="3,8 6,11 13,4"/></svg>Таблица учёта позиций в подарок</li>
       </ul>
-      <a href="mailto:serg.fintelect@gmail.com?subject=Подписка%20на%20портфель%20Fintelect%20%E2%80%94%20хочу%20подключиться" class="plan-btn plan-btn-dark">Подключить за $350 →</a>
+      <button onclick="scrollToForm('Подписка на портфель')" class="plan-btn plan-btn-dark">Подключить за $350 →</button>
     </div>
     <div class="plan featured fade-up fade-up-d1">
       <div class="plan-tag">Полное управление</div>
@@ -705,7 +705,7 @@
 </div>
 
 <!-- CTA FINAL -->
-<section class="cta-final">
+<section class="cta-final" id="contactSection">
   <h2 class="fade-up">Начните инвестировать вместе с Fintelect</h2>
   <p class="fade-up fade-up-d1">Оставьте email — пришлём детали подписки и ответим на вопросы перед покупкой.</p>
 
@@ -732,6 +732,7 @@
     <input type="hidden" name="redirect" value="false">
     <input type="hidden" id="h_name" name="name">
     <input type="hidden" id="h_email" name="email">
+    <input type="hidden" id="h_source" name="Источник заявки">
 
     <div style="display:flex;flex-direction:column;gap:10px;">
       <div style="font-size:13px;color:var(--ink-2);text-align:center;padding:4px 0;">
@@ -773,7 +774,7 @@
   </div>
 
   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;" class="fade-up fade-up-d3">
-    <a href="https://t.me/fintelega_channel" target="_blank" class="btn-outline" style="height:40px;font-size:13px;gap:7px;">
+    <a href="https://t.me/serg_fint" target="_blank" class="btn-outline" style="height:40px;font-size:13px;gap:7px;">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21.198 2.433a2.242 2.242 0 00-1.022.215l-16.5 6.75a2.25 2.25 0 00.126 4.238l3.918 1.181 1.548 5.148a.75.75 0 001.28.298l2.286-2.396 4.364 3.22a2.25 2.25 0 003.504-1.545l2.25-16.5a2.25 2.25 0 00-2.754-2.609zm-1.667 2.663l-2.003 14.68-4.496-3.318-2.496 2.617 1.23-4.09 7.765-9.889z"/></svg>
       Telegram
     </a>
@@ -939,6 +940,18 @@ window.addEventListener('scroll', function() {
 
 
 // ── Двухшаговая форма ──
+function scrollToForm(source) {
+  var sec = document.getElementById('contactSection');
+  if (sec) { sec.scrollIntoView({behavior:'smooth', block:'center'}); }
+  if (source) {
+    var src = document.getElementById('h_source');
+    if (src) src.value = source;
+  }
+  setTimeout(function(){
+    var n = document.getElementById('f_name');
+    if (n && document.getElementById('step1').style.display !== 'none') n.focus();
+  }, 600);
+}
 function goStep2() {
   var name = document.getElementById('f_name').value.trim();
   var email = document.getElementById('f_email').value.trim();
