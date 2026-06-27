@@ -203,9 +203,7 @@
   }
 
   /* 5. Stats strip: subtle top border gold */
-  .stats-strip {
-    border-top: 2px solid var(--gold);
-  }
+  .stats-strip { border-top: none; border-bottom: none; }
 
   /* 6. Nav subtle shadow on scroll (via JS) */
   nav.scrolled {
@@ -351,6 +349,64 @@
     footer { padding: 24px 28px; }
   }
 
+
+  /* Wall Street Quote Block */
+  @media (max-width: 640px) {
+    .wsq-grid { grid-template-columns: 1fr !important; gap: 40px !important; padding: 48px 16px !important; }
+    .wsq-grid blockquote { font-size: 18px !important; }
+    .wsq-grid > div:last-child { order: -1; }
+  }
+  @media (max-width: 900px) and (min-width: 641px) {
+    .wsq-grid { grid-template-columns: 1fr 260px !important; gap: 40px !important; padding: 56px 28px !important; }
+  }
+
+
+  /* WSQ responsive */
+  @media (max-width: 640px) {
+    .wsq-grid { grid-template-columns: 1fr !important; padding: 48px 16px !important; gap: 32px !important; }
+    .wsq-grid > div:last-child { display: flex; justify-content: center; }
+    .wsq-grid blockquote { font-size: 18px !important; }
+  }
+  @media (max-width: 900px) and (min-width: 641px) {
+    .wsq-grid { padding: 56px 28px !important; gap: 32px !important; }
+  }
+
+
+  /* ── Тёмный stats strip ── */
+  .stats-strip {
+    background: #0D1117 !important;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+  .stats-strip .s-cell {
+    border-right-color: rgba(255,255,255,0.08) !important;
+  }
+  .stats-strip .s-val {
+    color: #B8922A;
+  }
+  .stats-strip .s-val.gold {
+    color: #F0EDE6;
+  }
+  .stats-strip .s-lbl {
+    color: rgba(255,255,255,0.45) !important;
+  }
+
+  /* ── Чередующиеся секции: лёгкий серый ── */
+  #how { background: var(--surface-2); }
+  #license { background: var(--surface) !important; }
+  #price { background: var(--surface-2); }
+
+  /* ── Scarcity bar немного темнее ── */
+  .scarcity-bar {
+    background: #0D1117 !important;
+    border-color: transparent !important;
+  }
+  .scarcity-bar .sc-text { color: #F0EDE6; }
+  .scarcity-bar .sc-sub { color: rgba(255,255,255,0.4) !important; }
+  .scarcity-bar .progress-track { background: rgba(255,255,255,0.1) !important; }
+  .scarcity-bar .progress-fill { background: var(--gold) !important; }
+  .scarcity-bar > div:last-child { color: rgba(255,255,255,0.4) !important; }
+
 </style>
 </head>
 <body>
@@ -403,7 +459,7 @@
 </section>
 
 <!-- STATS -->
-<div class="stats-strip" id="statsStrip">
+<div class="stats-strip" id="statsStrip" style="background:#0D1117;border-top:none;border-bottom:none;">
   <div class="s-cell fade-up">
     <div class="s-val gold"><span class="count-val" data-target="66" data-prefix="+" data-suffix="%">0%</span></div>
     <div class="s-lbl">рост портфеля за 5 лет</div>
@@ -549,8 +605,10 @@
   </div>
 </section>
 </div>
+
+
 <!-- MANAGER BLOCK -->
-<div style="border-bottom:1px solid var(--border)">
+<div style="border-bottom:1px solid var(--border);">
 <section class="section">
   <div class="section-label fade-up">Управляющий портфелями</div>
   <div class="section-title fade-up fade-up-d1">Ваши деньги на вашем счету. Экспертиза — наша</div>
