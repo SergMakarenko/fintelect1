@@ -100,7 +100,61 @@
   }
   </script>
   <title>Подписка на портфель — Fintelect</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JCWPH4X26"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2JCWPH4X26');
+
+    // События для отслеживания
+    document.addEventListener('DOMContentLoaded', function() {
+
+      // Клик «Подключить за $350»
+      document.querySelectorAll('[onclick*="scrollToForm"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          gtag('event', 'click_subscribe_btn', { event_category: 'CTA' });
+        });
+      });
+
+      // Открытие шага 2 формы
+      var goStep2orig = window.goStep2;
+      window.goStep2 = function() {
+        gtag('event', 'form_step1_complete', { event_category: 'Form' });
+        goStep2orig();
+      };
+
+      // Успешная отправка формы — отслеживаем через мутацию
+      var observer = new MutationObserver(function() {
+        var success = document.getElementById('formSuccess');
+        if (success && success.style.display !== 'none') {
+          gtag('event', 'form_submitted', { event_category: 'Form' });
+        }
+      });
+      var target = document.getElementById('formSuccess');
+      if (target) observer.observe(target, { attributes: true, attributeFilter: ['style'] });
+
+      // Попап открылся
+      var popupOrig = window.showPopup;
+      window.showPopup = function() {
+        gtag('event', 'exit_popup_shown', { event_category: 'Popup' });
+        popupOrig();
+      };
+
+      // Скролл до блока управляющего (50% страницы)
+      var managerTracked = false;
+      window.addEventListener('scroll', function() {
+        if (!managerTracked && window.scrollY > document.body.scrollHeight * 0.4) {
+          managerTracked = true;
+          gtag('event', 'scroll_40pct', { event_category: 'Engagement' });
+        }
+      }, { passive: true });
+
+    });
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
